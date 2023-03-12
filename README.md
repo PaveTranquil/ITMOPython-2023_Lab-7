@@ -19,16 +19,16 @@
 
 | Вариант | Файл | Столбец(-цы) | Формулы |
 | ------- | ---- | ------------ | ------- |
-| 1 | data1.csv | 1 от 4 и 5 | x∈(-п;п); y=x; z=tg(x) |
-| 2 | data2.csv | 1 | x∈(-2п;2п); y=sin(x)cos(x); z=sin(x)cos(x) |
-| 3 | data1.csv | 1 от 4 и 18 | x∈(-5п;5п); y=cos(x); z=sin(x) |
+| 1 | data1.csv | 1 от 4 и 5 | x∈(-π;π); y=x; z=tg(x) |
+| 2 | data2.csv | 1 | x∈(-2π;2π); y=sin(x)cos(x); z=sin(x)cos(x) |
+| 3 | data1.csv | 1 от 4 и 18 | x∈(-5π;5π); y=cos(x); z=sin(x) |
 | 4 | data2.csv | 2 | x∈(-5;5); y∈(-5;5); z=sin(x^y) |
-| 5 | data1.csv | 1 от 4 и 16 | x∈(-п;п); y=sin(x)cos(x); z=sin(x) |
-| 6 | data2.csv | 3 | x∈(-п;п); y=1/x; z=sin(x) |
+| 5 | data1.csv | 1 от 4 и 16 | x∈(-π;π); y=sin(x)cos(x); z=sin(x) |
+| **6** | **data2.csv** | **3** | **x∈(-π;π); y=1/x; z=sin(x)** |
 | 7 | data1.csv | 1 от 4 и 10 | x∈(-10;10); y∈(-0,5;0,5); z=tg(x+y) |
-| 8 | data2.csv | 4 | x∈(-3п;3п); y=cos(x); z=x/sin(x) |
-| 9 | data1.csv | 1 от 10 и 16 | x∈(-5п;5п); y∈(-5п;5п); z=y cos(x) |
-| 10 | data2.csv | 5 | x∈(-3п;3п); y=x cos(x); z=sin(x) |
+| 8 | data2.csv | 4 | x∈(-3π;3π); y=cos(x); z=x/sin(x) |
+| 9 | data1.csv | 1 от 10 и 16 | x∈(-5π;5π); y∈(-5π;5π); z=y cos(x) |
+| 10 | data2.csv | 5 | x∈(-3π;3π); y=x cos(x); z=sin(x) |
 
 
 **Дополнительное задание**
