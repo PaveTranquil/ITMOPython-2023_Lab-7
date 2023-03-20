@@ -1,8 +1,8 @@
 from time import perf_counter
 
-import matplotlib.figure
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.animation import PillowWriter
 from mpl_toolkits.mplot3d import Axes3D
 
 
@@ -37,11 +37,11 @@ def task_2():
     std = np.std(arr)
 
     # задаём фигуру 10×4 дюйма
-    fig: matplotlib.figure.Figure = plt.figure(figsize=(10, 4))
+    fig: plt.Figure = plt.figure(figsize=(10, 4))
     # первые оси будут содержать в себе график по массиву и STD
-    ax_1: matplotlib.pyplot.Axes = fig.add_subplot(121)
+    ax_1: plt.Axes = fig.add_subplot(121)
     # вторые оси будут содержать в себе график по нормализованному массиву
-    ax_2: matplotlib.pyplot.Axes = fig.add_subplot(122)
+    ax_2: plt.Axes = fig.add_subplot(122)
     fig.subplots_adjust(wspace=0.5)  # между графиками расстояние в 0.5 дюйма
 
     # отрисовываем гистограмму и попутно получаем максимальное значение по оси OY — высоту гистограммы
@@ -50,10 +50,10 @@ def task_2():
     ax_2.hist(arr2, bins=16, density=True, color='green')  # отрисовываем нормализованную гистограмму
 
     # отрисовываем прямую x = STD по высоте графика
-    ax_1.plot(np.repeat(std, height[0].max()), np.arange(height), color='red')
+    ax_1.plot(np.repeat(std, height.max()), np.arange(height), color='red')
     # указываем аннотацию к прямой
     ax_1.annotate('среднеквадратичное отклонение', xy=(std - std / 20, 0),
-                  xytext=(std + std / 15, height[0].max() / 10)).set_rotation(90)
+                  xytext=(std + std / 15, height.max() / 10)).set_rotation(90)
 
     # именуем графики и оси
     ax_1.set_title('Распределение Solids')
@@ -73,13 +73,41 @@ def task_3():
     zs = np.sin(xs)  # по OZ — синусоиду sin(x)
 
     # создаём фигуру, 3D-оси и отрисовываем точками график, используя выше объявленные оси OX, OY и OZ
-    fig = plt.figure()
-    ax = Axes3D(fig)
+    fig: plt.Figure = plt.figure()
+    ax: Axes3D = Axes3D(fig)
     ax.plot(xs, ys, zs, marker='.')
     plt.show()  # отображаем график в gui
+
+
+def extra_task():
+    print('Создаю анимацию...', end='\r')
+    animation: PillowWriter = PillowWriter(60)
+    base = plt.subplots()
+    fig: plt.Figure = base[0]
+    ax: plt.Axes = base[1]
+    animation.setup(fig, 'extra.gif')
+
+    ax.set_title('Анимированный y = sin(x)')
+    ax.set_xlabel('x')
+    ax.set_ylabel('sin(x)')
+
+    xs = np.linspace(0, 2 * np.pi, 100)
+    ys = np.sin(xs)
+    ax.plot(xs, ys)
+    dot, = ax.plot([0], [0], 'ro')
+    animation.grab_frame()
+
+    slides = np.linspace(0, 2 * np.pi, 60)
+    for i in slides:
+        dot.set_data(i, np.sin(i))
+        animation.grab_frame()
+
+    animation.finish()
+    print('Создание анимации завершено — файл extra.gif готов!')
 
 
 if __name__ == '__main__':
     task_1()
     # task_2()
     # task_3()
+    # extra_task()
